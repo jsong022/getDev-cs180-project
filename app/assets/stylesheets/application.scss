@@ -1,0 +1,844 @@
+@import "materialize";
+@import "font-awesome";
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,600);
+@import url(https://fonts.googleapis.com/css?family=Crete+Round);
+
+/* ----------------------------------------------------------------
+	application.scss Structure
+	
+	1. Basic Layout Styles (margins, paddings, borders, etc.)
+	2. Typography (Headings, Subheadings, Subtitles, etc.)
+	3. Sections (section id, class id, etc.)
+	4. Columns & Grids (custom columns and grids)
+	5. Header / Logo
+	6. Menu
+	7. Body
+	8. Overlays, Models, Notifications (toast)
+	9. Footer
+	10. Buttons / Toggles
+	11. Misc.
+-----------------------------------------------------------------*/
+
+/* ----------------------------------------------------------------
+	Basic Layout Styles
+-----------------------------------------------------------------*/
+.nomargin {
+  margin: 0 !important;
+}
+
+.notopmargin {
+  margin-top: 0 !important;
+}
+
+.nobottommargin {
+  margin-bottom: 0 !important;
+}
+
+.norightmargin {
+  margin-right: 0 !important;
+}
+
+.noborder {
+  border: none !important;
+}
+
+.notopborder {
+  border-top: none !important;
+}
+
+.nobottomborder {
+  border-bottom: none !important;
+}
+
+.nopadding {
+  padding: 0 !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.center {
+  text-align: center !important;
+}
+
+.left {
+  float: left !important;
+}
+
+.right {
+  float: right !important;
+}
+
+nobg {
+  background: none !important;
+}
+
+.top {
+  top:0%;
+}
+
+.front {
+  position: relative;
+  z-index: 1000;
+}
+
+.back
+{
+  position:relative;
+  z-index: -1;
+}
+
+.hcenter { 
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.vcenter {
+  min-height: 100%;
+  /* Make it a flex container */
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex; 
+  
+  /* Align the bootstrap's container vertically */
+  -webkit-box-align : center;
+  -webkit-align-items : center;
+  -moz-box-align : center;
+  -ms-flex-align : center;
+  align-items : center;
+  
+  width: 100%;
+  -webkit-box-pack : center;
+  -moz-box-pack : center;
+  -ms-flex-pack : center;
+  -webkit-justify-content : center;
+  justify-content : center;
+  
+  vertical-align: middle;
+}
+
+/* ----------------------------------------------------------------
+	Typography
+-----------------------------------------------------------------*/
+
+a {
+  color: #000 !important;
+}
+
+.t300 { font-weight: 300 !important; }
+
+.t400 { font-weight: 400 !important; }
+
+.t500 { font-weight: 500 !important; }
+
+.t600 { font-weight: 600 !important; }
+
+.t700 { font-weight: 700 !important; }
+
+.ls0 { letter-spacing: 0px !important; }
+
+.ls1 { letter-spacing: 1px !important; }
+
+.ls2 { letter-spacing: 2px !important; }
+
+.ls3 { letter-spacing: 3px !important; }
+
+.ls4 { letter-spacing: 4px !important; }
+
+.ls5 { letter-spacing: 5px !important; }
+
+.font-body {
+  font-family: 'Opens Sans', sans-serif;
+}
+
+.font-primary {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.font-secondary {
+  font-family: 'Crete Round', serif;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}
+
+.text-left {
+  text-align: left;
+  direction: ltr;
+}
+
+.text-right {
+  text-align: right;
+}
+
+/* ----------------------------------------------------------------
+	Sections
+-----------------------------------------------------------------*/
+
+.login-label-margin{
+  margin-right: 3rem;
+}
+
+.row .col{
+  padding: 0 0.3rem !important;
+}
+
+.tabs{
+  height: inherit;
+}
+
+.flex {
+    display: block;
+    margin: 0 auto;
+    max-width: 119rem;
+    height: inherit;
+}
+
+.flex>* {
+    float: right;
+}
+
+.flex>*:last-child {
+    float: left;
+}
+
+.item-center {
+  float: none !important;
+  margin: 0 auto;
+  text-align: center;
+}
+
+section {
+	position: relative;
+	overflow: hidden;
+	min-height: 100%;
+	height: 100%;
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 0.0) !important;
+  box-shadow: none !important;
+}
+
+/* ----------------------------------------------------------------
+	Search Form
+-----------------------------------------------------------------*/
+
+.search {
+  width: 80%;
+}
+
+.search-margin {
+  margin: 1rem 0;
+}
+
+.bg {
+    color: black;
+    background-color: #FFF;
+    opacity: 0.9;
+    padding: 0.9rem 1.1rem;
+}
+
+.bg-left {
+    padding: 0 1.1rem 0 0;
+}
+
+.bg-last {
+    padding: 0 1.1rem 0 1.1rem;
+}
+
+.btn.home {
+    background-color: #FFF !important;
+    opacity: 0.6 !important;
+    box-shadow: none !important;
+}
+
+.btn.home:hover {
+    background-color: #3AFFED !important;
+    opacity: 1.0 !important;
+}
+
+.btn.home.btn-padding {
+    padding: 0.2rem 0.8rem;
+    margin: 0 0 0 1.1rem;
+}
+
+#login-form {
+    margin-top: 55%;
+    border-style: solid;
+    border-width: 5px;
+    border-color: #03a9f4;
+}
+
+.input-field.border-right {
+  border-right: 1px solid #000;
+}
+
+::-webkit-input-placeholder {
+    color: #404040;
+    opacity: 1 !important; /* for chrome */
+}
+
+:-moz-placeholder { /* Firefox 18- */
+    color: #404040;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+    color: #404040;
+}
+
+:-ms-input-placeholder {  
+   color: #404040;
+}
+
+.icon-black {
+    color: black;
+}
+
+.search-btn-wrapper {
+  float: right;
+  display: inline-block;
+  top: 50%;
+  transform: translateY(20%);
+}
+
+.search-btn {
+  color: black;
+  background-color: #FFF;
+  opacity: 0.9;
+}
+
+/* ----------------------------------------------------------------
+	Profile Page/ Edit Profile Page
+-----------------------------------------------------------------*/
+
+.card-info {
+  margin: 0.5rem 0 1rem 5rem;
+  padding-left: 10rem;
+}
+
+.card-image {
+  width:15rem;
+  height:15rem;
+  background-size: cover;
+  position: absolute !important;
+  top: 138.75px;
+  transform: translateY(-50%);
+}
+
+.card-title {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.card-project {
+  border-top: 1px solid rgba(160,160,160,0.2);
+}
+
+.card-review {
+  border-top: 1px solid rgba(160,160,160,0.2);
+  padding: 1rem;
+}
+
+.main-info {
+  min-height: 8rem;
+}
+
+.rowTop {
+  position: absolute; 
+  top: 0; 
+  right: 0;  
+  text-align:right;
+  padding-right: 10px;
+}
+
+.rowBottom {
+  position: absolute; 
+  bottom: 0; 
+  right: 0;  
+  text-align:right;
+  padding-right: 10px;
+}
+
+.flexProfile {
+  max-width:90rem;
+  margin:0 auto;
+}
+
+.flexProfile_last {
+  margin-bottom: 6.25rem;
+}
+
+.tabBottom {
+  bottom: 0;
+  margin-right:5rem;
+  margin-bottom:4rem;
+}
+
+.profileInfo {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 600 !important;
+  margin:0 auto;
+  max-width:90rem;
+}
+
+.profileSeparator {
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  width: 100%;
+  margin: 2rem;
+}
+
+.profileMenuButton {
+  float: right;
+  display: inline-block;
+  top: 50%;
+  transform: translateY(25%);
+}
+
+.profileImageEdit {
+  transform: translateY(-120%);
+  padding-left: 0.5rem;
+}
+.profileTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.profileSubtitle {
+  display: block;
+  min-height: 3rem;
+  line-height: 3rem;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  padding: 0 1rem;
+}
+
+.profileBodyText {
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 200;
+  padding: 0 2rem;
+  margin-bottom: 20px;
+}
+
+.dropdown-menu {
+  padding: 1rem;
+  background-color: rgba(255,255,255,0.0);
+  box-shadow: 0 0 0 0 rgba(0,0,0,0.0);
+}
+
+.dropdown-btn {
+  float: right;
+  margin: 0 2rem;
+}
+
+.average-review-rating {
+  display: inline-block;
+  padding: 0 2rem !important;
+}
+
+/* ----------------------------------------------------------------
+	Chatting and Mailbox page
+-----------------------------------------------------------------*/
+
+.flexChatBox
+{
+  max-width:90rem;
+  margin:0 auto;
+  margin-top:1rem;
+  position:relative;
+}
+
+.chatBox
+{
+  border:1rem;
+  padding:1rem;
+}
+
+.chatProfileButton
+{
+  float: right;
+  display: inline-block;
+  top: 50%;
+  transform: translateY(25%);
+}
+
+.fontsize
+{
+  font-size: 12px;
+}
+
+.userChat
+{
+  margin-left:40rem;
+}
+
+.recepientChat
+{
+  margin-right:40rem;
+}
+
+.toBottom
+{
+  width: 100%;
+  padding: 1em 7.5rem;
+  clear: both;
+  position: fixed;
+  bottom: 3rem;
+  max-width: none;
+  z-index: 2;
+  background-color: #FFF !important;
+  
+  // bottom:3rem;
+  // position:fixed;
+  // width:90rem;
+  // margin:0 auto;
+}
+
+.messagesBlock
+{
+  margin-bottom: 13.5rem;
+}
+
+/* ----------------------------------------------------------------
+	Home Page
+-----------------------------------------------------------------*/
+
+.greeting
+{
+  position: absolute;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 46px;
+  padding: 0 0 10rem 0;
+}
+
+.greeting.morning { 
+  color: #000;
+}
+.greeting.afternoon { 
+  color: #000;
+}
+.greeting.night { 
+  color: #FFF; 
+  text-shadow: 2px 2px #000;
+}
+
+.bg-img.morning {
+  background: asset-url('home/cover-image-morning.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;	
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-img.afternoon {
+  background: asset-url('home/cover-image-afternoon.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;	
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.bg-img.night {
+  background: asset-url('home/cover-image-night.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;	
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+ 
+/* ----------------------------------------------------------------
+	Columns & Grids
+-----------------------------------------------------------------*/
+
+.postcontent { width: 860px; }
+.postcontent.bothsidebar { width: 580px; }
+.sidebar { width: 240px; }
+.col_full { width: 100%; }
+.col_half { width: 48%; }
+.col_one_third { width: 30.63%; }
+.col_two_third { width: 65.33%; }
+.col_one_fourth { width: 22%; }
+.col_three_fourth { width: 74%; }
+.col_one_fifth { width: 16.8%; }
+.col_two_fifth { width: 37.6%; }
+.col_three_fifth { width: 58.4%; }
+.col_four_fifth { width: 79.2%; }
+.col_one_sixth { width: 13.33%; }
+.col_five_sixth { width: 82.67%; }
+body.stretched .container-fullwidth {
+	position: relative;
+	padding: 0 60px;
+	width: 100%;
+}
+
+.postcontent,
+.sidebar,
+.col_full,
+.col_half,
+.col_one_third,
+.col_two_third,
+.col_three_fourth,
+.col_one_fourth,
+.col_one_fifth,
+.col_two_fifth,
+.col_three_fifth,
+.col_four_fifth,
+.col_one_sixth,
+.col_five_sixth {
+	display: block;
+	position: relative;
+	float: left;
+}
+
+.postcontent,
+.sidebar { margin-right: 40px; }
+
+.col_full {
+	clear: both;
+	float: none;
+	margin-right: 0;
+}
+
+.postcontent.col_last,
+.sidebar.col_last { float: right; }
+
+.col_last {
+	margin-right: 0 !important;
+	clear: right;
+}
+
+/* ----------------------------------------------------------------
+  Header / Logo
+-----------------------------------------------------------------*/
+
+header {
+	position: fixed;
+	left: 0;
+	background: #00bcd4;
+	z-index: 111;
+	width: 100%;
+	height: 3.125rem;
+	display: block !important;
+}
+
+a.content-header,
+ul.content-header,
+.sidenav {
+    display: inline-block;
+    padding: 0.7rem 1.4rem 1rem;
+    color: #fff !important;
+    cursor: pointer;
+    margin: 0 -.27rem 0 0;
+    font-size: 14px;
+    height: 1.5rem;
+    vertical-align: top
+}
+
+/* ----------------------------------------------------------------
+	Menu / SideNav
+-----------------------------------------------------------------*/
+
+#logo-container
+{
+  margin-bottom: 30px;
+  height: 100%;
+}
+
+#profile-logo
+{
+  background:asset-url('profile-photo-placeholder.png') no-repeat;
+}
+
+.circle {
+  width: 180px !important;
+  height: 180px;
+}
+
+#sidenav-overlay{
+  z-index: -1 !important;
+}
+
+.side-nav {
+  width: 240px !important;
+}
+
+.toggles label{
+    display: inline-block;
+    padding: 0.7rem 1.4rem 1rem;
+    color: #FFF;
+    margin: 0 -.27rem 0 0;
+    font-size: 12px;
+    height: 1.5rem;
+    vertical-align: top
+}
+
+/* ----------------------------------------------------------------
+	Body
+-----------------------------------------------------------------*/
+
+.stretched #wrapper {
+  width: 100%;
+  margin: 0;
+  box-shadow: none;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background: #F4F5F6;
+    // background: #1C2328;
+    overflow-x: hidden
+}
+
+html {
+    direction: ltr;
+    height: 100%
+}
+
+body {
+    min-height: 100%;
+    direction: ltr
+}
+
+main {
+    left: 0%;
+    z-index: 2;
+    width: 100%;
+    min-height: 100%;
+    direction: ltr;
+    position: absolute;
+    display: block;
+}
+
+main.main {
+    background: #F4F5F6;
+}
+
+main.main header .content-header span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: right;
+    direction: ltr;
+}
+
+main.main section {
+  margin: 0 auto;
+  position: fixed;
+}
+
+/* ----------------------------------------------------------------
+	Overlays / Modals / Notifications (toast)
+-----------------------------------------------------------------*/
+
+.form-error-toast {
+  @extend .red, .accent-2;
+}
+
+
+/* ----------------------------------------------------------------
+	Footer
+-----------------------------------------------------------------*/
+
+footer.flex 
+{
+  text-align: center;
+  width: 100%;
+  padding: 1em 10% 0;
+  height: 4rem;
+  clear: both;
+  position: fixed;
+  bottom: 0;
+  max-width: none;
+  z-index: 2;
+  background-color: #1C2328 !important;
+}
+
+footer nav 
+{
+    display: block;
+    line-height: 2.3rem;
+    direction: ltr;
+}
+
+footer .social>a 
+{
+    display: inline-block;
+    padding: .6rem .5rem;
+    color: #fff !important;
+}
+
+footer nav a,
+footer nav a:hover 
+{
+    color: #fff !important;
+    padding: .4rem;
+    line-height: 1rem;
+    font-size: 12px;
+    display: inline-block
+}
+
+/* ----------------------------------------------------------------
+	Buttons / Toggles
+-----------------------------------------------------------------*/
+
+.btn-center-relative {
+  position: relative;
+  text-align: center;
+}
+
+.btn-enlarge {
+  padding: 0 !important;
+  width: 100%;
+  margin: 1.5rem 0 0 0;
+}
+
+.btn-tooltip {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 1rem;
+}
+
+/* ----------------------------------------------------------------
+	Misc.
+-----------------------------------------------------------------*/
+
+.clearfix {
+  content: " "; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  clear: both;
+  font-size: 0px;
+  line-height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.tab {
+  margin-right: 1rem;
+  top: 50%;
+  position: relative;
+}
+

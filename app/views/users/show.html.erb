@@ -1,0 +1,266 @@
+<!-- this is view for root/users/USERNAME -->
+<html>
+  <div class="profileInfo back">
+  
+    <div class="card-image z-depth-3">
+      <% if @user.picture? %>
+        <%= image_tag(@user.picture.url, :size => "225x225")%>
+      <% else %>
+        <%= image_tag "profile.jpg", :size => "225x225" %>
+      <% end %>
+    </div>
+      
+    <div class="card card-info picIndent back z-depth-2">
+      <div class="card-content">
+        <div class="profileTitle">
+          <%= @user.first_name %> <%= @user.last_name %>
+          <div style="display: inline-block">
+            <%= render 'follow_form' if logged_in? %>
+          </div>
+        </div>
+        <% if logged_in? %>
+            <% if current_user?(@user) %>
+              <%= link_to edit_user_path(current_user.id), class: "dropdown-btn" do %>
+                <i class="material-icons tooltipped"
+                   data-position="top" 
+                   data-tooltip="Edit Profile"
+                   data-delay="20">mode_edit</i>
+              <% end %>
+            <% end %>
+            <% if !current_user?(@user) %>
+            <%= link_to conversations_path(sender_id: current_user.id, recipient_id: @user.id),method: 'post', class: "dropdown-btn" do %>
+                <i class="material-icons tooltipped"
+                   data-position="top" 
+                   data-tooltip="Message"
+                   data-delay="20">chat</i>
+            <% end %>
+            <% end %>
+        <% end %>
+        
+      </div>
+    </div>
+  
+    <div class="card card-info back picIndent z-depth-2">
+      <div class="card-content main-info">
+        Location:
+        <div class="font-body t400 ls2">
+          <i class="fa fa-map-marker" aria-hidden="true"></i>
+          <%= @user.zipcode %>
+        </div>
+      </div>
+    </div>
+    
+    <ul class="card card-info back picIndent z-depth-2 collapsible-profile" data-collapsible="accordion">
+      <li>
+        <div class="collapsible-header cardmargin tooltipped"
+             data-position="right" 
+             data-tooltip="Click to Expand"
+             data-delay="20"> More Info </div>
+        <div class="collapsible-body">
+          <div class="profileSubtitle">Introduction:</div>
+          <div class="profileBodyText"><%= @user.description %></div>
+          <div class="profileSeparator nopadding nomargin"></div>
+          <div class="profileSubtitle">Performance:</div>
+          <div class="row">
+            <div class="col s6 profileBodyText">
+              <p class="average-review-rating" data-score=<%= @average_review %>>
+              </p>
+              Based on <%= @user.reviews.count %> review(s).
+            </div>
+        </div>
+        
+      </li>
+    </ul>
+  </div>
+        
+  <div class="profileSeparator"></div>
+        
+  <div class="flexProfile card center z-depth-2 ">
+    <div class="card-title">Projects</div>
+    
+    <% @listings.each do |listing| %>
+      <%if on_profile?(@user,listing) %>
+      
+        <div class="card-content card-project">
+          <div class="row text-left nomargin">
+            
+            <div class="col s6">
+              <div class="row">
+                <span class="font-primary t600">Project Title:</span> 
+                <%= listing.name %>
+              </div>
+              <div class="row">
+                <span class="font-primary t600">Description:</span>
+                <%= listing.description %>
+              </div>
+            </div>
+            
+            <div class="col s6">
+              <div class="row">
+                <span class="font-primary t600">Job Type:</span> 
+                <%= listing.job_type %>
+              </div>
+              <div class="row">
+                <span class="font-primary t600">Language(s):</span>
+                <%= listing.languages %>
+              </div>
+            </div>
+            <div class= "col s6">
+                <div class="row">
+                  <span class="font-primary t600">Price:</span>
+                 <%= listing.price %>
+              </div>
+            </div>
+            <% if current_user?(@user) %>
+              <div class="right">
+                <span class="right"><%= link_to 'Delete', listing, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+                <span class="right tab"><%= link_to "Edit", edit_listing_path(listing) %></span>
+              </div>
+            <%else%>
+              <div class="right">
+                <% if listing.posthire %>
+                  <%= link_to "Hire Service", new_listing_order_path(listing), :style=>'color:#fff !important;', class: "btn waves-effect waves-light", data: { no_turbolink: true } %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+    
+    <% @projects.each do |project| %>
+      <%if on_profile_project?(@user,project) %>
+      
+        <div class="card-content card-project">
+          <div class="row text-left nomargin">
+            
+            <div class="col s6">
+              <div class="row">
+                <span class="font-primary t600">Project Title:</span> 
+                <%= project.name %>
+              </div>
+              <div class="row">
+                <span class="font-primary t600">Description:</span>
+                <%= project.description %>
+              </div>
+            </div>
+            
+            <div class="col s6">
+              <div class="row">
+                <span class="font-primary t600">Job Type:</span> 
+                <%= project.job_type %>
+              </div>
+              <div class="row">
+                <span class="font-primary t600">Language(s):</span>
+                <%= project.languages %>
+              </div>
+            </div>
+            <% if current_user?(@user) %>
+              <div class="right">
+                <span class="right"><%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+                <span class="right tab"><%= link_to "Edit", edit_project_path(project) %></span>
+              </div>
+            <%else%>
+              
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="profileSeparator"></div>
+
+  <div class="flexProfile flexProfile_last card center z-depth-2">
+    <div class="card-title">Reviews</div>
+    
+    <%= render @user.reviews %>
+      
+    <% if current_user and current_user.id != @user.id %>
+    <div class="card-review">
+      <% if logged_in? %>
+        <div data-no-turbolink>
+          <%= link_to "Add Review", new_user_review_path(@user) %>
+        </div>
+      <% else %>
+        <div>
+          <%= link_to "Add Review", login_path %>
+        </div>
+      <% end %>
+    </div>
+    <% end %>
+    
+    <% if logged_in? and current_user?(@user) %>
+      <div class="fixed-action-btn" style="bottom: 5.5rem; right: 24px;">
+        <a class="btn-floating btn-large red">
+          <i class="material-icons tooltipped" 
+             data-position="left" 
+             data-tooltip="New..."
+             data-delay="50">add</i>
+        </a>
+        <ul>
+          <li>
+            <%= link_to new_project_path, class: "btn-floating yellow darken-1" do %>
+              <i class="material-icons tooltipped" 
+                 data-position="left" 
+                 data-tooltip="New Project"
+                 data-delay="50">insert_chart</i>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_listing_path, class: "btn-floating blue" do %>
+              <i class="material-icons tooltipped" 
+                 data-position="left" 
+                 data-tooltip="New Listing"
+                 data-delay="50">business</i>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    
+  </div>
+</html>
+  
+<script>
+  $('.collapsible-profile').collapsible({
+    accordion : true
+  });
+</script>
+
+<!-- Script tag for raty.js -->
+<!-- readOnly so users can't update without proper permissions -->
+<script>
+  $('.review-rating').raty({
+    readOnly: true,
+    score: function() {
+    return $(this).attr('data-score');
+  },
+    path: '/assets/'
+  });
+</script>
+
+<!-- Script tag for raty.js for User's average rating-->
+<script>
+  $('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
+</script>
+
+
+<script>
+$('.profile-menu').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: false, // Activate on hover
+      gutter: 10, // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'right' // Displays dropdown with edge aligned to the left of button
+    }
+  );
+</script>

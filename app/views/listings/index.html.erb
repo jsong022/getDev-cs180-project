@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+
+<div class="input_group">
+  <div class="form-inline">
+  <%= form_for :search, :url => search_url, :html => { :method => :get } do  %>
+    <%= text_field_tag :query, params[:query], placeholder: "Search for..." %>
+    <%= submit_tag "search", class: "btn btn-default" %>
+    <% end %>
+</div>
+
+<h1>Listing Listings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Languages</th>
+      <th>Job type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+<div class="results">
+  <tbody>
+    <% @listings.each do |listing| %>
+      <tr>
+        <td><%= listing.name %></td>
+        <td><%= listing.description %></td>
+        <td><%= listing.languages %></td>
+        <td><%= listing.job_type %></td>
+        <td><%= link_to 'Show', listing %></td>
+        <% if logged_in? %>
+          <% if is_owner?(listing) %>
+            <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+            <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        <% end %>
+        <% if listing.user_id != current_user.id %>
+          <td><%= link_to 'Message', conversations_path(sender_id: current_user.id, recipient_id: listing.user_id), method: 'post'%></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<br>
+
+<% if logged_in? %>
+  <%= link_to 'New Listing', new_listing_path, class: "btn btn-link", data: { no_turbolink: true } %>
+<% else %>
+ <%= link_to 'New Listing', login_path %>
+<% end %>
